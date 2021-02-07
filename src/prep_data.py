@@ -170,7 +170,7 @@ def create_data(vocab, file_name_dict):
 
     y_train = [1] * 10000 + [0] * 10000
     y_train = np.array(y_train)
-    y_train.reshape(1, 20000)
+    y_train = np.reshape(y_train, (1, 20000))
 
     np.random.seed(314)
     np.random.shuffle(X_train.T)
@@ -179,7 +179,7 @@ def create_data(vocab, file_name_dict):
 
     y_val = [1] * 2500 + [0] * 2500
     y_val = np.array(y_val)
-    y_val.reshape(1, 5000)
+    y_val = np.reshape(y_val, (1, 5000))
 
     test_pos_dir = os.scandir('../data/test/pos')
 
@@ -211,7 +211,7 @@ def create_data(vocab, file_name_dict):
 
     y_text = [1] * 12500 + [0] * 12500
     y_test = np.array(y_text)
-    y_test.reshape(1, 25000)
+    y_test = np.reshape(y_test, (1, 25000))
 
     pickle.dump((X_train, y_train, X_val, y_val, X_test, y_test), open('../serialized/data.pkl', 'wb'))
 
