@@ -36,7 +36,7 @@ def get_accuracy(y_hat, y):
     Calculate the accuracy on a set of predictions.
     """
     
-    return np.sum(y_hat == y, axis=1)/np.size(y, axis=1)
+    return np.sum(y_hat == y, axis=0)/np.size(y, axis=1)
 
 def forward_propagation(A, params):
     z1 = linear_regression(A, params['w1'], params['b1'])
@@ -127,14 +127,14 @@ def training(X_train, y_train, X_val, y_val):
         _, _, _, pred_t = forward_propagation(X_train, params)
         
         pred_ct = (pred_t > 0.5).astype(int)
-
-        training_accuracy.append(get_accuracy(pred_ct, y_train))
+        
+        training_accuracy.append(get_accuracy(pred_ct, y_train)[0])
 
         _, _, _, pred_v = forward_propagation(X_val, params)
         
         pred_cv = (pred_v > 0.5 ).astype(int)
         
-        curr_val_accuracy = get_accuracy(pred_cv, y_val)
+        curr_val_accuracy = get_accuracy(pred_cv, y_val)[0]
 
         if i == 1:
             model['w1'] = params['w1']
@@ -148,7 +148,7 @@ def training(X_train, y_train, X_val, y_val):
             model['b2'] = params['b2']
 
         validation_accuracy.append(curr_val_accuracy)
-        break
+        
     pickle.dump(params, open('../serialized/nn.pkl', 'wb'))
     pickle.dump((training_accuracy, validation_accuracy), open('../serialized/plot.pkl', 'wb'))
 

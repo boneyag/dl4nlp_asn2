@@ -32,13 +32,13 @@ def main():
     # print(X_test.shape)
     # print(y_test.shape)
 
-    # training(X_train, y_train, X_val, y_val)
+    training(X_train, y_train, X_val, y_val)
 
-    [tr_ac, vl_ac] = pickle.load(open("../serialized/plot.pkl", "rb"))
+    # [tr_ac, vl_ac] = pickle.load(open("../serialized/plot.pkl", "rb"))
 
-    print(tr_ac)
-    print(vl_ac)
-    plot(tr_ac, vl_ac)
+    # print(tr_ac)
+    # print(vl_ac)
+    # plot(tr_ac, vl_ac)
 
     # test_model(X_test, y_test)
     

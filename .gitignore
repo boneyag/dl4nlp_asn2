@@ -2,3 +2,4 @@ data/
 dl4nlp/
 serialized/
 test/
+__pycache__/
